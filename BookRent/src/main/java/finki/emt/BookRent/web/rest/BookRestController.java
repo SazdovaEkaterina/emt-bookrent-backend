@@ -48,6 +48,13 @@ public class BookRestController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
+    @PutMapping("/mark-as-taken/{id}")
+    public ResponseEntity<Book> save(@PathVariable Long id){
+        return this.bookService.markAsTaken(id)
+                .map(book -> ResponseEntity.ok().body(book))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
     //TODO: DELETE
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable Long id){

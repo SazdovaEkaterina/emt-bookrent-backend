@@ -37,8 +37,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Optional<Book> save(BookDto bookDto) {
 
-        Author author = this.authorRepository.findById(bookDto.getAuthor().getId())
-                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthor().getId()));
+        Author author = this.authorRepository.findById(bookDto.getAuthorId())
+                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthorId()));
 
         this.bookRepository.deleteByName(bookDto.getName());
         Book book = new Book(bookDto.getName(), bookDto.getCategory(), author, bookDto.getAvailableCopies());
@@ -52,12 +52,12 @@ public class BookServiceImpl implements BookService {
 
         Book book = this.bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
 
-        book.setName(book.getName());
+        book.setName(bookDto.getName());
         book.setCategory(bookDto.getCategory());
         book.setAvailableCopies(bookDto.getAvailableCopies());
 
-        Author author = this.authorRepository.findById(bookDto.getAuthor().getId())
-                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthor().getId()));
+        Author author = this.authorRepository.findById(bookDto.getAuthorId())
+                .orElseThrow(() -> new AuthorNotFoundException(bookDto.getAuthorId()));
         book.setAuthor(author);
 
         this.bookRepository.save(book);
@@ -67,5 +67,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteById(Long id) {
         this.bookRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Book> markAsTaken(Long id) {
+
+        Book book = this.bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        Integer numberOfCopies = book.getAvailableCopies() - 1;
+        book.setAvailableCopies(numberOfCopies);
+
+        this.bookRepository.save(book);
+        return Optional.of(book);
     }
 }

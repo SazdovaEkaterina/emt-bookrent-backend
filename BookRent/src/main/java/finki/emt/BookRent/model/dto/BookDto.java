@@ -15,17 +15,17 @@ public class BookDto {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private Author author;
+    private Long authorId;
 
     private Integer availableCopies;
 
     public BookDto() {
     }
 
-    public BookDto(String name, Category category, Author author, Integer availableCopies) {
+    public BookDto(String name, Category category, Long authorId, Integer availableCopies) {
         this.name = name;
         this.category = category;
-        this.author = author;
+        this.authorId = authorId;
         this.availableCopies = availableCopies;
     }
 }
