@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "book")
 public class Book {
 
     @Id
@@ -20,6 +21,7 @@ public class Book {
     @ManyToOne
     private Author author;
 
+    @Column(name = "available_copies")
     private Integer availableCopies;
 
     public Book() {
