@@ -20,7 +20,7 @@ public class BookRestController {
 
     //TODO: CREATE
     @PostMapping("/add")
-    public ResponseEntity<Book> save(@RequestBody BookDto bookDto){
+    public ResponseEntity<Book> save(@RequestBody BookDto bookDto) {
         return this.bookService.save(bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
@@ -28,38 +28,38 @@ public class BookRestController {
 
     //TODO: READ
     @GetMapping
-    public List<Book> findAll(){
+    public List<Book> findAll() {
         return this.bookService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> findById(@PathVariable Long id){
+    public ResponseEntity<Book> findById(@PathVariable Long id) {
         return this.bookService.findById(id)
-            .map(book -> ResponseEntity.ok().body(book))
-            .orElseGet(() -> ResponseEntity.notFound().build());
+                .map(book -> ResponseEntity.ok().body(book))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     //TODO: UPDATE
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}/edit")
     public ResponseEntity<Book> save(@PathVariable Long id,
-                                     @RequestBody BookDto bookDto){
+                                     @RequestBody BookDto bookDto) {
         return this.bookService.edit(id, bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PutMapping("/mark-as-taken/{id}")
-    public ResponseEntity<Book> save(@PathVariable Long id){
+    @PutMapping("/{id}/mark-as-taken")
+    public ResponseEntity<Book> save(@PathVariable Long id) {
         return this.bookService.markAsTaken(id)
                 .map(book -> ResponseEntity.ok().body(book))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     //TODO: DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity delete(@PathVariable Long id) {
         this.bookService.deleteById(id);
-        if(this.bookService.findById(id).isEmpty()){
+        if (this.bookService.findById(id).isEmpty()) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.badRequest().build();
