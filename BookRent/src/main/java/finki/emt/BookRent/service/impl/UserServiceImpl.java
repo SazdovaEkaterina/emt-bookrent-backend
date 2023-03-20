@@ -1,15 +1,5 @@
 package finki.emt.BookRent.service.impl;
-
-import finki.emt.BookRent.model.User;
-import finki.emt.BookRent.model.enumerations.Role;
-import finki.emt.BookRent.model.exceptions.InvalidUsernameOrPasswordException;
-import finki.emt.BookRent.model.exceptions.PasswordsDoNotMatchException;
-import finki.emt.BookRent.model.exceptions.UsernameAlreadyExistsException;
 import finki.emt.BookRent.repository.UserRepository;
-import finki.emt.BookRent.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
