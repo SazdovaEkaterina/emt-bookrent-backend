@@ -3,8 +3,8 @@ package finki.emt.BookRent.service;
 import finki.emt.BookRent.model.Book;
 import finki.emt.BookRent.model.dto.BookDto;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 

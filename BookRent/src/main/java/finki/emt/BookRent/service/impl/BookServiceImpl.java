@@ -9,9 +9,9 @@ import finki.emt.BookRent.repository.AuthorRepository;
 import finki.emt.BookRent.repository.BookRepository;
 import finki.emt.BookRent.service.BookService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 

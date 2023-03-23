@@ -5,8 +5,7 @@ import finki.emt.BookRent.model.dto.BookDto;
 import finki.emt.BookRent.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
