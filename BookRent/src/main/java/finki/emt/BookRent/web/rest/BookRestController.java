@@ -6,6 +6,7 @@ import finki.emt.BookRent.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,11 @@ public class BookRestController {
     @GetMapping
     public List<Book> findAll() {
         return this.bookService.findAll();
+    }
+
+    @GetMapping("/pagination")
+    public List<Book> findAllWithPagination(Pageable pageable) {
+        return this.bookService.findAllWithPagination(pageable).getContent();
     }
 
     @GetMapping("/{id}")
