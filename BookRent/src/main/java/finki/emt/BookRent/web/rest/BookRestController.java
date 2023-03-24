@@ -50,7 +50,7 @@ public class BookRestController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PutMapping("/{id}/mark-as-taken")
+    @PatchMapping("/{id}/mark-as-taken")
     public ResponseEntity<Book> markAsTaken(@PathVariable Long id) {
         return this.bookService.markAsTaken(id)
                 .map(book -> ResponseEntity.ok().body(book))
