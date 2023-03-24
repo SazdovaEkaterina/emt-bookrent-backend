@@ -10,4 +10,14 @@ public enum Category {
     CLASSICS,
     DRAMA;
 
+    public static boolean isValidCategoryName(String name) {
+        Category result = null;
+        for (Category category : Category.values()) {
+            if (category.name().equalsIgnoreCase(name)) {
+                result = category;
+                break;
+            }
+        }
+        return result != null;
+    }
 }

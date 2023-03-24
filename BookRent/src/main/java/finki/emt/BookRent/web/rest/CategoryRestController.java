@@ -3,6 +3,7 @@ package finki.emt.BookRent.web.rest;
 import finki.emt.BookRent.model.Book;
 import finki.emt.BookRent.model.enumerations.Category;
 import finki.emt.BookRent.service.BookService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +27,12 @@ public class CategoryRestController {
         return Arrays.stream(Category.values()).toList();
     }
 
-    @GetMapping("/{name}")
-    public List<Book> findBooksByCategory(@PathVariable String name){
-        return this.bookService.findAllByCategory(name.toUpperCase());
+    @GetMapping("/{categoryName}")
+    public ResponseEntity<List<Book>> findBooksByCategory(@PathVariable String categoryName){
+        if(Category.isValidCategoryName(categoryName)){
+            return ResponseEntity.ok().body(this.bookService.findAllByCategory(categoryName.toUpperCase()));
+        }
+        return ResponseEntity.badRequest().build();
     }
 
 }
