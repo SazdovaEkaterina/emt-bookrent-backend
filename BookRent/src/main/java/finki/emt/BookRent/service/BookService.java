@@ -2,6 +2,7 @@ package finki.emt.BookRent.service;
 
 import finki.emt.BookRent.model.Book;
 import finki.emt.BookRent.model.dto.BookDto;
+import finki.emt.BookRent.model.enumerations.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,6 +12,8 @@ import java.util.Optional;
 public interface BookService {
 
     List<Book> findAll();
+
+    List<Book> findAllByCategory(String categoryName);
 
     Optional<Book> findById(Long id);
 

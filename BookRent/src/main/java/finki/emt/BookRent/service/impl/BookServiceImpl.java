@@ -3,6 +3,7 @@ package finki.emt.BookRent.service.impl;
 import finki.emt.BookRent.model.Author;
 import finki.emt.BookRent.model.Book;
 import finki.emt.BookRent.model.dto.BookDto;
+import finki.emt.BookRent.model.enumerations.Category;
 import finki.emt.BookRent.model.exceptions.AuthorNotFoundException;
 import finki.emt.BookRent.model.exceptions.BookNotFoundException;
 import finki.emt.BookRent.repository.AuthorRepository;
@@ -29,6 +30,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAll() {
         return this.bookRepository.findAll();
+    }
+
+    @Override
+    public List<Book> findAllByCategory(String categoryName) {
+        Category category = Category.valueOf(categoryName);
+        return this.bookRepository.findAllByCategory(category);
     }
 
     @Override
