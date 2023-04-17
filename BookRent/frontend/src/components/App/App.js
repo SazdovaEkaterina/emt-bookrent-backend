@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import Books from "../Books/BookList/Books";
 import Categories from "../Categories/Categories";
 import BookRentService from "../../repository/bookrentRepository";
+import Header from "../Header/Header";
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
     render() {
         return (
             <Router>
+                <Header/>
                 <main>
                     <div className="container">
                         <Route path={"/"} exact render={() =>
