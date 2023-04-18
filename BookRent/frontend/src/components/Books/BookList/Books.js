@@ -1,10 +1,18 @@
 import React from "react";
 import BookItem from "../BookItem/BookItem";
+import {Link} from "react-router-dom";
 
 const Books = (props) => {
     return (
         <div className={"container mm-4 mt-5"}>
             <div className={"row"}>
+                <div className="col mb-3">
+                    <div className="row">
+                        <div className="col-sm-12 col-md-12">
+                            <a className="btn btn-block btn-dark" href="/books/add">+ Add new book</a>
+                        </div>
+                    </div>
+                </div>
                 <div className={"table-responsive"}>
                     <table className={"table table-striped"}>
                         <thead>

@@ -5,6 +5,7 @@ import Books from "../Books/BookList/Books";
 import Categories from "../Categories/Categories";
 import BookRentService from "../../repository/bookrentRepository";
 import Header from "../Header/Header";
+import BookAdd from "../Books/BookAdd/BookAdd";
 
 class App extends Component {
 
@@ -12,7 +13,8 @@ class App extends Component {
         super(props);
         this.state = {
             books: [],
-            categories: []
+            categories: [],
+            authors: []
         }
     }
 
@@ -22,12 +24,16 @@ class App extends Component {
                 <Header/>
                 <main>
                     <div className="container">
-                        <Route path={"/"} exact render={() =>
-                            <Books books={this.state.books} onDelete = {this.deleteProduct}/>}/>
+                        <Route path={"/books/add"} exact render={()=>
+                            <BookAdd categories={this.state.categories}
+                                    authors={this.state.authors}
+                                    onAddBook={this.addBook}/>}/>
                         <Route path={"/books"} exact render={() =>
-                            <Books books={this.state.books} onDelete = {this.deleteProduct}/>}/>
+                            <Books books={this.state.books} onDelete = {this.deleteBook}/>}/>
                         <Route path={"/categories"} exact render={() =>
                             <Categories categories={this.state.categories}/>}/>
+                        <Route path={"/"} exact render={() =>
+                            <Books books={this.state.books} onDelete = {this.deleteBook}/>}/>
                     </div>
                 </main>
             </Router>
@@ -36,6 +42,7 @@ class App extends Component {
 
     componentDidMount() {
         this.loadBooks();
+        this.loadAuthors()
         //this.loadCategories();
     }
 
@@ -57,8 +64,24 @@ class App extends Component {
             })
     }
 
-    deleteProduct = (id) => {
+    loadAuthors = () => {
+        BookRentService.fetchAuthors()
+            .then((data) => {
+                this.setState({
+                    authors: data.data
+                })
+            })
+    }
+
+    deleteBook = (id) => {
         BookRentService.deleteBook(id)
+            .then(() => {
+                this.loadBooks();
+            })
+    }
+
+    addBook = (name, category, authorId, availableCopies) => {
+        BookRentService.addBook(name, category, authorId, availableCopies)
             .then(() => {
                 this.loadBooks();
             })
