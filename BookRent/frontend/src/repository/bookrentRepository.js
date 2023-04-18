@@ -6,6 +6,9 @@ const BookRentService = {
     },
     fetchCategories: () => {
         return axios.get("/categories");
+    },
+    deleteBook: (id) => {
+        return axios.delete(`/books/${id}/delete`);
     }
 }
 

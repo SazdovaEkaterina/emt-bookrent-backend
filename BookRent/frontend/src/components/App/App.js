@@ -23,9 +23,9 @@ class App extends Component {
                 <main>
                     <div className="container">
                         <Route path={"/"} exact render={() =>
-                            <Books books={this.state.books}/>}/>
+                            <Books books={this.state.books} onDelete = {this.deleteProduct}/>}/>
                         <Route path={"/books"} exact render={() =>
-                            <Books books={this.state.books}/>}/>
+                            <Books books={this.state.books} onDelete = {this.deleteProduct}/>}/>
                         <Route path={"/categories"} exact render={() =>
                             <Categories categories={this.state.categories}/>}/>
                     </div>
@@ -36,6 +36,7 @@ class App extends Component {
 
     componentDidMount() {
         this.loadBooks();
+        //this.loadCategories();
     }
 
     loadBooks = () => {
@@ -53,6 +54,13 @@ class App extends Component {
                 this.setState({
                     books: data.data
                 })
+            })
+    }
+
+    deleteProduct = (id) => {
+        BookRentService.deleteBook(id)
+            .then(() => {
+                this.loadBooks();
             })
     }
 
