@@ -5,7 +5,7 @@ const Header = (props) => {
     return (
         <header>
             <nav className="navbar navbar-expand-md navbar-dark navbar-fixed bg-dark">
-                <a className="navbar-brand" href="/books">BookRent Application</a>
+                <a className="navbar-brand p-sm-2" href="/books">BookRent Application</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
