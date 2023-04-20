@@ -12,12 +12,16 @@ const BookItem = (props) => {
                    onClick={() => {
                        props.onDelete(props.book.id)
                    }}>Delete</a>
+            </td>
+            <td scope={"col"} className={"text-right"}>
                 <a title={"Edit"} className={"btn btn-info ml-2"}
                    onClick={() => {
                        props.onEdit(props.book.id)
                    }}
                    href={`/books/${props.book.id}/edit`}>Edit</a>
-                <a title={"Mark as taken"} className={"btn btn-secondary"}
+            </td>
+            <td scope={"col"} className={"text-right"}>
+                <a title={"Mark as taken"} className={"btn btn-secondary ml-2"}
                    onClick={() => {
                        props.onMarkAsTaken(props.book.id)
                    }}>Mark as taken</a>
