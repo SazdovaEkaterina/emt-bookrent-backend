@@ -38,13 +38,15 @@ class App extends Component {
                         <Route path={"/books"} exact render={() =>
                             <Books books={this.state.books}
                                    onDelete={this.deleteBook}
-                                   onEdit={this.getBook}/>}/>
+                                   onEdit={this.getBook}
+                                   onMarkAsTaken={this.markBookAsTaken}/>}/>
                         <Route path={"/categories"} exact render={() =>
                             <Categories categories={this.state.categories}/>}/>
                         <Route path={"/"} exact render={() =>
                             <Books books={this.state.books}
                                    onDelete={this.deleteBook}
-                                   onEdit={this.getBook}/>}/>
+                                   onEdit={this.getBook}
+                                   onMarkAsTaken={this.markBookAsTaken}/>}/>
                     </div>
                 </main>
             </Router>
@@ -109,6 +111,13 @@ class App extends Component {
 
     editBook = (id, name, category, authorId, availableCopies) => {
         BookRentService.editBook(id, name, category, authorId, availableCopies)
+            .then(() => {
+                this.loadBooks();
+            });
+    }
+
+    markBookAsTaken = (id) => {
+        BookRentService.markBookAsTaken(id)
             .then(() => {
                 this.loadBooks();
             });

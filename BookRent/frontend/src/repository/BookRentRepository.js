@@ -31,6 +31,9 @@ const BookRentService = {
     },
     getBook: (id) => {
         return axios.get(`/books/${id}`);
+    },
+    markBookAsTaken: (id) => {
+        return axios.patch(`/books/${id}/mark-as-taken`);
     }
 }
 

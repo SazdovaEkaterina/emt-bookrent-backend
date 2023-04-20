@@ -27,7 +27,8 @@ const Books = (props) => {
                             return (
                                 <BookItem book={book}
                                           onDelete={props.onDelete}
-                                          onEdit={props.onEdit}/>
+                                          onEdit={props.onEdit}
+                                          onMarkAsTaken={props.onMarkAsTaken}/>
                             );
                         })}
                         </tbody>

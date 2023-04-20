@@ -17,6 +17,10 @@ const BookItem = (props) => {
                        props.onEdit(props.book.id)
                    }}
                    href={`/books/${props.book.id}/edit`}>Edit</a>
+                <a title={"Mark as taken"} className={"btn btn-secondary"}
+                   onClick={() => {
+                       props.onMarkAsTaken(props.book.id)
+                   }}>Mark as taken</a>
             </td>
         </tr>
     );
