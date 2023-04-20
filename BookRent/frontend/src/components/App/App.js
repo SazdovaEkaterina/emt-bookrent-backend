@@ -56,7 +56,7 @@ class App extends Component {
     componentDidMount() {
         this.loadBooks();
         this.loadAuthors()
-        //this.loadCategories();
+        this.loadCategories();
     }
 
     loadBooks = () => {
@@ -72,7 +72,7 @@ class App extends Component {
         BookRentService.fetchCategories()
             .then((data) => {
                 this.setState({
-                    books: data.data
+                    categories: data.data
                 })
             });
     }

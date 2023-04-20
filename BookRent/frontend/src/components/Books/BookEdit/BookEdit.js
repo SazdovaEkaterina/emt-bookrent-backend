@@ -48,7 +48,9 @@ const BookEdit = (props) => {
                     <div className="form-group">
                         <label>Category</label>
                         <select name="category" className="form-control" onChange={handleChange}>
-                            {props.categories}
+                            {props.categories.map((category) =>
+                                <option value={category}>{category}</option>
+                            )}
                         </select>
                     </div>
                     <div className="form-group">
