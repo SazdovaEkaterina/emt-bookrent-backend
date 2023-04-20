@@ -1,6 +1,5 @@
 import React from "react";
 import BookItem from "../BookItem/BookItem";
-import {Link} from "react-router-dom";
 
 const Books = (props) => {
     return (
@@ -26,7 +25,9 @@ const Books = (props) => {
                         <tbody>
                         {props.books.map((book:B) => {
                             return (
-                                <BookItem book={book} onDelete={props.onDelete}/>
+                                <BookItem book={book}
+                                          onDelete={props.onDelete}
+                                          onEdit={props.onEdit}/>
                             );
                         })}
                         </tbody>

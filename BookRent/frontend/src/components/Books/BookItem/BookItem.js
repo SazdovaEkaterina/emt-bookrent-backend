@@ -12,6 +12,11 @@ const BookItem = (props) => {
                    onClick={() => {
                        props.onDelete(props.book.id)
                    }}>Delete</a>
+                <a title={"Edit"} className={"btn btn-info ml-2"}
+                   onClick={() => {
+                       props.onEdit(props.book.id)
+                   }}
+                   href={`/books/${props.book.id}/edit`}>Edit</a>
             </td>
         </tr>
     );
