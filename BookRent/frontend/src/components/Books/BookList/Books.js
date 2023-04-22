@@ -18,8 +18,7 @@ class Books extends Component {
         const offset = this.state.size * this.state.page;
         const nextPageOffset = offset + this.state.size;
         const pageCount = Math.ceil(this.props.books.length / this.state.size);
-        const books = this.getBooksPage();
-        console.log(books, pageCount)
+        const books = this.getBooksPage(offset, nextPageOffset);
 
         return (
             <div className={"container mm-4 mt-5"}>
@@ -68,25 +67,22 @@ class Books extends Component {
 
     handlePageClick = (data) => {
         let selected = data.selected;
-        console.log(selected)
         this.setState({
             page: selected
         })
     }
 
     getBooksPage = (offset, nextPageOffset) => {
-        console.log(offset, nextPageOffset)
-        return this.props.books.map((book, index) => {
+        return this.props.books.map((book) => {
             return (
                 <BookItem book={book}
                           onDelete={this.props.onDelete}
                           onEdit={this.props.onEdit}
                           onMarkAsTaken={this.props.onMarkAsTaken}/>
             );
+        }).filter((book, index) => {
+            return index >=offset && index < nextPageOffset;
         })
-        //     .filter((book, index) => {
-        //     return index >=offset && index < nextPageOffset;
-        // })
     }
 
 }
